@@ -74,9 +74,10 @@ const ControlPanel = () => {
         }))
       };
 
+      const baseUrl = 'https://shortest-path-in-decision-making-engineer.onrender.com';
       const endpoint = mode === 'maxFlow' 
-        ? 'http://localhost:8000/api/v1/max-flow/calculate'
-        : 'http://localhost:8000/api/v1/shortest-path/calculate';
+        ? `${baseUrl}/api/v1/max-flow/calculate`
+        : `${baseUrl}/api/v1/shortest-path/calculate`;
 
       const res = await fetch(endpoint, {
         method: 'POST',
