@@ -42,19 +42,19 @@ const GraphCanvas = () => {
   // Compute styled edges
   const styledEdges = useMemo(() => {
     return edges.map(e => {
-      // DEFAULT STYLE
-      let style = { stroke: '#64748b', strokeWidth: 2 };
+      // DEFAULT STYLE - Enterprise Light Mode
+      let style = { stroke: '#94a3b8', strokeWidth: 2 };
       let label = e.data?.weight !== undefined ? String(e.data.weight) : (e.label || "1");
       let animated = false;
-      let markerEnd = { type: MarkerType.ArrowClosed, color: '#64748b' };
+      let markerEnd = { type: MarkerType.ArrowClosed, color: '#94a3b8' };
       
       if (mode === 'shortestPath') {
         const sourceIdx = shortestPath.indexOf(e.source);
         const targetIdx = shortestPath.indexOf(e.target);
         if (sourceIdx !== -1 && targetIdx !== -1 && Math.abs(sourceIdx - targetIdx) === 1) {
           animated = true;
-          style = { stroke: '#4ade80', strokeWidth: 4, filter: 'drop-shadow(0 0 5px rgba(74, 222, 128, 0.8))' };
-          markerEnd = { type: MarkerType.ArrowClosed, color: '#4ade80' };
+          style = { stroke: '#2563eb', strokeWidth: 3 };
+          markerEnd = { type: MarkerType.ArrowClosed, color: '#2563eb' };
         }
       } else if (mode === 'maxFlow') {
         // Show capacity globally if we have it, else weight
@@ -69,9 +69,9 @@ const GraphCanvas = () => {
             animated = true;
             // Width by relative flow
             const ratio = dist.flow / dist.capacity;
-            const strokeWidth = Math.max(3, ratio * 7);
-            style = { stroke: '#818cf8', strokeWidth: strokeWidth, filter: 'drop-shadow(0 0 5px rgba(129, 140, 248, 0.8))' };
-            markerEnd = { type: MarkerType.ArrowClosed, color: '#818cf8' };
+            const strokeWidth = Math.max(2, ratio * 6);
+            style = { stroke: '#059669', strokeWidth: strokeWidth };
+            markerEnd = { type: MarkerType.ArrowClosed, color: '#059669' };
           }
         }
       }
@@ -106,11 +106,11 @@ const GraphCanvas = () => {
         type: 'default',
         markerEnd: {
           type: MarkerType.ArrowClosed,
-          color: '#64748b',
+          color: '#94a3b8',
         },
-        style: { stroke: '#64748b', strokeWidth: 2 },
-        labelStyle: { fill: '#f8fafc', fontWeight: 700, fontSize: 13 },
-        labelBgStyle: { fill: '#334155', fillOpacity: 0.9, rx: 6, ry: 6 },
+        style: { stroke: '#94a3b8', strokeWidth: 2 },
+        labelStyle: { fill: '#334155', fontWeight: 600, fontSize: 13 },
+        labelBgStyle: { fill: '#ffffff', fillOpacity: 1, stroke: '#e2e8f0', strokeWidth: 1, rx: 4, ry: 4 },
         labelBgPadding: [8, 4],
       };
       addEdgeToStore(newEdge);
@@ -133,8 +133,8 @@ const GraphCanvas = () => {
         colorMode="dark"
         className="react-flow-dark"
       >
-        <Background color="#334155" variant="dots" gap={20} size={1.5} />
-        <Controls />
+        <Background color="#cbd5e1" variant="dots" gap={20} size={1.5} />
+        <Controls className="bg-white border-slate-200 shadow-sm rounded-md" />
       </ReactFlow>
       
       {nodes.length === 0 && (

@@ -17,10 +17,10 @@ const CircleNode = ({ data, selected }) => {
   };
 
   return (
-    <div className={`relative w-[60px] h-[60px] flex items-center justify-center rounded-full border-[3px] shadow-lg transition-all ${
-        isPath ? 'border-emerald-500 bg-emerald-400 text-slate-900 shadow-[0_0_15px_rgba(16,185,129,0.8)] font-black scale-110' :
-        selected ? 'border-cyan-400 bg-cyan-950/80 shadow-[0_0_10px_rgba(6,182,212,0.5)] text-white font-bold' : 
-        'border-slate-500 bg-slate-800 text-slate-200 font-bold'
+    <div className={`relative w-[60px] h-[60px] flex items-center justify-center rounded-full border-[2px] transition-all bg-white ${
+        isPath ? 'border-emerald-600 text-emerald-700 bg-emerald-50 font-black scale-105 shadow-sm' :
+        selected ? 'border-blue-500 text-blue-700 bg-blue-50 font-bold shadow-md' : 
+        'border-slate-300 text-slate-700 font-semibold hover:border-slate-400 shadow-sm'
       }`}
     >
       {/* 4 Handles ẩn bám quanh viền node. Người dùng chỉ kéo từ viền là đi */}

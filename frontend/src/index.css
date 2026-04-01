@@ -5,15 +5,15 @@
   width: 6px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(30, 41, 59, 0.5);
+  background: #f1f5f9;
   border-radius: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.3);
+  background: #cbd5e1;
   border-radius: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.5);
+  background: #94a3b8;
 }
 
 body {
@@ -35,15 +35,16 @@ code {
 .react-flow__handle {
   width: 12px;
   height: 12px;
-  background-color: #06b6d4 !important;
-  border: 2px solid #1e293b !important;
+  background-color: #ffffff !important;
+  border: 2px solid #cbd5e1 !important;
   border-radius: 50%;
-  transition: transform 0.2s, background-color 0.2s;
+  transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
   z-index: 10;
 }
 .react-flow__handle:hover {
   transform: scale(1.5);
-  background-color: #22d3ee !important;
+  background-color: #f8fafc !important;
+  border-color: #94a3b8 !important;
 }
 
 /* Tăng diện tích click cho handle */

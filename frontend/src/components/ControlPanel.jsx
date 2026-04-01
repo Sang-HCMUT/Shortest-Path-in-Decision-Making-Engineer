@@ -112,29 +112,29 @@ const ControlPanel = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-slate-900 text-slate-200">
-      <div className="p-6 border-b border-slate-800 bg-slate-900">
+    <div className="h-full flex flex-col bg-slate-50 text-slate-800">
+      <div className="p-6 border-b border-slate-200 bg-white">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-400 to-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.4)] flex items-center justify-center">
-             <Activity className="text-white" size={24} />
+          <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+             <Activity className="text-blue-600" size={24} />
           </div>
           <div>
-            <h2 className="text-[17px] font-bold text-white tracking-tight drop-shadow-md">Transshipment & Shortest Path</h2>
-            <p className="text-xs text-slate-400 font-medium tracking-wide">Network Graph Solver</p>
+            <h2 className="text-[17px] font-bold text-slate-900 tracking-tight">Transshipment & Shortest Path</h2>
+            <p className="text-xs text-slate-500 font-medium tracking-wide">Network Graph Solver</p>
           </div>
         </div>
         
         {/* Mode Switcher */}
-        <div className="flex bg-slate-800/50 p-1 rounded-xl border border-slate-700 mt-6 shadow-inner">
+        <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 mt-6 box-border">
           <button 
             onClick={() => handleModeChange('shortestPath')}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'shortestPath' ? 'bg-cyan-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-300'}`}
+            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'shortestPath' ? 'bg-white text-blue-700 shadow-sm border border-slate-200' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'}`}
           >
             SHORTEST PATH
           </button>
           <button 
             onClick={() => handleModeChange('maxFlow')}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'maxFlow' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-300'}`}
+            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${mode === 'maxFlow' ? 'bg-white text-emerald-700 shadow-sm border border-slate-200' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'}`}
           >
             MAX FLOW
           </button>
@@ -145,17 +145,17 @@ const ControlPanel = () => {
         {/* Section: Xây dựng Đồ thị */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 mb-2">
-             <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 font-bold text-xs text-cyan-400">1</div>
-             <h3 className="text-sm font-bold text-slate-300">XÂY DỰNG ĐỒ THỊ</h3>
+             <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center border border-slate-300 font-bold text-xs text-slate-600">1</div>
+             <h3 className="text-sm font-bold text-slate-700">XÂY DỰNG ĐỒ THỊ</h3>
           </div>
           
-          <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 space-y-3">
+          <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1">TÊN NÚT (NODE)</label>
+              <label className="block text-xs font-semibold text-slate-500 mb-1">TÊN NÚT (NODE)</label>
               <div className="flex gap-2">
                 <input 
                   type="text" 
-                  className="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all text-white placeholder-slate-600"
+                  className="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-slate-900 placeholder-slate-400"
                   placeholder="Ví dụ: A, B, S, T..."
                   value={nodeName}
                   onChange={e => setNodeName(e.target.value)}
@@ -163,18 +163,18 @@ const ControlPanel = () => {
                 />
                 <button 
                   onClick={handleAddNode}
-                  className="bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-2 rounded-lg transition-colors shadow-lg shadow-cyan-900/50"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors shadow-sm"
                   title="Thêm Nút"
                 >
                   <PlusCircle size={20} />
                 </button>
               </div>
             </div>
-            <div className="bg-cyan-950/30 border border-cyan-900/50 p-2.5 rounded-lg">
-              <p className="text-xs text-cyan-300 leading-relaxed font-medium">
+            <div className="bg-blue-50/50 border border-blue-200 p-3 rounded-lg">
+              <p className="text-xs text-blue-800 leading-relaxed font-medium">
                 Tạo 2 đỉnh trở lên. Chọn chế độ <b>{mode === 'maxFlow' ? 'Max Flow' : 'Shortest Path'}</b>, sau đó kéo đường thẳng giữa 2 đỉnh và nhập {mode === 'maxFlow' ? 'sức chứa' : 'khoảng cách'} cho nó!
               </p>
-              <div className="mt-2 text-[11px] text-cyan-400/80 bg-cyan-950/50 p-2 rounded flex flex-col gap-1 border border-cyan-800/30">
+              <div className="mt-2 text-[11px] text-blue-700 bg-white p-2 rounded flex flex-col gap-1 border border-blue-100 shadow-sm">
                  <b>Mẹo Vẽ Đồ Thị:</b>
                  <ul className="list-disc pl-4">
                    <li>Click vào nút hoặc đường cung, rồi bấm phím <b>Delete</b> hoặc <b>Backspace</b> để Xóa.</li>
@@ -188,7 +188,7 @@ const ControlPanel = () => {
             <div className="flex gap-2">
               <button 
                 onClick={clearGraph}
-                className="flex-1 py-2.5 px-4 rounded-lg border border-red-500/40 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:border-red-500/60 transition-colors text-sm font-bold flex items-center justify-center gap-2"
+                className="flex-1 py-2.5 px-4 rounded-lg border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 transition-colors text-sm font-bold flex items-center justify-center gap-2"
                 title="Xóa trống đồ thị hiện tại"
               >
                 <Trash2 size={16} /> LÀM LẠI
@@ -199,8 +199,8 @@ const ControlPanel = () => {
                 disabled={history.length === 0}
                 className={`py-2.5 px-4 rounded-lg border transition-colors text-sm font-bold flex items-center justify-center gap-2 
                   ${history.length > 0 
-                    ? 'border-yellow-500/40 bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 hover:border-yellow-500/60' 
-                    : 'border-slate-700 bg-slate-800 text-slate-600 cursor-not-allowed'}`}
+                    ? 'border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100' 
+                    : 'border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed'}`}
                 title="Hoàn tác thao tác lưới gần nhất (Chỉ áp dụng: Thêm/Xoá Node/Cung)"
               >
                 <Undo2 size={16} /> HOÀN TÁC
@@ -212,37 +212,37 @@ const ControlPanel = () => {
         {/* Section: Giải Thuật */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 mb-2">
-             <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 font-bold text-xs text-emerald-400">2</div>
-             <h3 className="text-sm font-bold text-slate-300">THUẬT TOÁN</h3>
+             <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center border border-slate-300 font-bold text-xs text-slate-600">2</div>
+             <h3 className="text-sm font-bold text-slate-700">THUẬT TOÁN</h3>
           </div>
           
-          <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 space-y-4">
+          <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-2">ĐỈNH BẮT ĐẦU (SOURCE)</label>
+              <label className="block text-xs font-semibold text-slate-500 mb-2">ĐỈNH BẮT ĐẦU (SOURCE)</label>
               <select 
-                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-white cursor-pointer hover:bg-slate-900 transition-colors"
+                className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-slate-900 cursor-pointer hover:bg-slate-100/50 transition-colors"
                 value={source || ''}
                 onChange={e => setSource(e.target.value)}
               >
-                <option value="" disabled className="text-slate-500">-- Chọn đỉnh --</option>
+                <option value="" disabled className="text-slate-400">-- Chọn đỉnh --</option>
                 {nodes.map(n => <option key={n.id} value={n.id}>{n.id}</option>)}
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-2">ĐỈNH ĐÍCH (SINK/TARGET)</label>
+              <label className="block text-xs font-semibold text-slate-500 mb-2">ĐỈNH ĐÍCH (SINK/TARGET)</label>
               <select 
-                className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-white cursor-pointer hover:bg-slate-900 transition-colors"
+                className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-slate-900 cursor-pointer hover:bg-slate-100/50 transition-colors"
                 value={target || ''}
                 onChange={e => setTarget(e.target.value)}
               >
-                <option value="" disabled className="text-slate-500">-- Chọn đỉnh --</option>
+                <option value="" disabled className="text-slate-400">-- Chọn đỉnh --</option>
                 {nodes.map(n => <option key={n.id} value={n.id}>{n.id}</option>)}
               </select>
             </div>
 
             {error && (
-              <div className="bg-red-950/50 border border-red-500/50 text-red-300 text-xs p-3 rounded-lg flex items-start gap-2">
+              <div className="bg-red-50 border border-red-200 text-red-700 text-xs p-3 rounded-lg flex items-start gap-2">
                 <span className="font-bold">!</span> {error}
               </div>
             )}
@@ -250,7 +250,7 @@ const ControlPanel = () => {
             <div className="flex gap-2 pt-2">
               <button 
                 onClick={handleRun}
-                className={`flex-1 font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 transform active:scale-95 text-white ${mode === 'maxFlow' ? 'bg-indigo-600 hover:bg-indigo-500 shadow-[0_0_15px_rgba(79,70,229,0.3)]' : 'bg-emerald-600 hover:bg-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]'}`}
+                className={`flex-1 font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 transform active:scale-95 text-white shadow-sm ${mode === 'maxFlow' ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-600 hover:bg-blue-700'}`}
               >
                 <Play size={18} fill="currentColor" /> BẮT ĐẦU TÍNH
               </button>
@@ -261,8 +261,8 @@ const ControlPanel = () => {
         {/* Section: Kết quả */}
         <div className="space-y-4 pb-10">
           <div className="flex items-center gap-2 mb-2">
-             <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 font-bold text-xs text-yellow-400">3</div>
-             <h3 className="text-sm font-bold text-slate-300">KẾT QUẢ KHOA HỌC</h3>
+             <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center border border-slate-300 font-bold text-xs text-slate-600">3</div>
+             <h3 className="text-sm font-bold text-slate-700">KẾT QUẢ KHOA HỌC</h3>
           </div>
           <ResultPanel mode={mode} />
         </div>
@@ -281,7 +281,7 @@ const ResultPanel = ({ mode }) => {
   if ((mode === 'shortestPath' && shortestDistance === null) || 
       (mode === 'maxFlow' && maxFlowValue === null)) {
     return (
-      <div className="text-center p-8 bg-slate-800/30 border border-dashed border-slate-700 rounded-xl text-slate-500 text-sm font-medium">
+      <div className="text-center p-8 bg-slate-50 border border-dashed border-slate-300 rounded-xl text-slate-400 text-sm font-medium">
         (Kết quả sẽ hiển thị ở đây)
       </div>
     );
@@ -291,21 +291,21 @@ const ResultPanel = ({ mode }) => {
     <div className="space-y-4 animate-in fade-in slide-in-from-bottom-5 duration-500 ease-out">
       {mode === 'shortestPath' ? (
         <>
-          <div className="bg-emerald-950/80 border border-emerald-500/50 rounded-xl p-5 relative overflow-hidden shadow-[0_0_20px_rgba(16,185,129,0.15)]">
-            <p className="text-xs font-bold text-emerald-400/80 mb-1 tracking-wider uppercase">TỔNG KHOẢNG CÁCH NGẮN NHẤT</p>
-            <p className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-emerald-300 to-green-500">{shortestDistance}</p>
+          <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-5 relative overflow-hidden">
+            <p className="text-xs font-bold text-slate-500 mb-1 tracking-wider uppercase">TỔNG KHOẢNG CÁCH NGẮN NHẤT</p>
+            <p className="text-5xl font-black text-blue-600">{shortestDistance}</p>
           </div>
           
-          <div className="bg-slate-800/80 rounded-xl p-5 border border-slate-700 relative shadow-inner">
-            <p className="text-xs font-bold text-slate-400 tracking-wider mb-3 uppercase">LỘ TRÌNH ĐI</p>
+          <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm relative">
+            <p className="text-xs font-bold text-slate-500 tracking-wider mb-3 uppercase">LỘ TRÌNH ĐI</p>
             <div className="flex flex-wrap items-center gap-2">
               {shortestPath.map((nodeId, idx) => (
                 <React.Fragment key={idx}>
-                  <span className="px-3.5 py-1.5 bg-cyan-950 border border-cyan-500/50 text-cyan-300 rounded-lg text-sm font-bold shadow-lg">
+                  <span className="px-3.5 py-1.5 bg-blue-50 border border-blue-200 text-blue-700 rounded-lg text-sm font-bold">
                     {nodeId}
                   </span>
                   {idx < shortestPath.length - 1 && (
-                    <span className="text-slate-600 font-black text-lg">→</span>
+                    <span className="text-slate-400 font-black text-lg">→</span>
                   )}
                 </React.Fragment>
               ))}
@@ -314,22 +314,22 @@ const ResultPanel = ({ mode }) => {
         </>
       ) : (
         <>
-          <div className="bg-indigo-950/80 border border-indigo-500/50 rounded-xl p-5 relative overflow-hidden shadow-[0_0_20px_rgba(79,70,229,0.15)]">
-            <p className="text-xs font-bold text-indigo-400/80 mb-1 tracking-wider uppercase">TỔNG LUỒNG CỰC ĐẠI (MAX FLOW)</p>
-            <p className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 to-purple-500">{maxFlowValue}</p>
+          <div className="bg-white border border-slate-200 shadow-sm rounded-xl p-5 relative overflow-hidden">
+            <p className="text-xs font-bold text-slate-500 mb-1 tracking-wider uppercase">TỔNG LUỒNG CỰC ĐẠI (MAX FLOW)</p>
+            <p className="text-5xl font-black text-emerald-600">{maxFlowValue}</p>
           </div>
-          <div className="text-xs text-slate-400 italic">
-            Ghi chú: Lượng hàng phân bổ chi tiết đã được tô màu xanh hiển thị trên các cung tương ứng ở đồ thị bên cạnh.
+          <div className="text-xs text-slate-500 italic bg-slate-50 p-3 rounded-lg border border-slate-200">
+            Ghi chú: Lượng hàng phân bổ chi tiết đã được tô màu đánh dấu trên các cung đồ thị bên cạnh.
           </div>
         </>
       )}
 
       {steps && steps.length > 0 && (
-        <div className="bg-black/40 rounded-xl p-4 border border-slate-800/80 font-mono">
-           <p className="text-[10px] font-bold text-slate-500 tracking-widest mb-3 uppercase">TERMINAL LOGS</p>
-           <div className="h-40 overflow-y-auto text-[11px] leading-relaxed text-emerald-400 custom-scrollbar pr-2 space-y-1.5">
+        <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 font-mono">
+           <p className="text-[10px] font-bold text-slate-400 tracking-widest mb-3 uppercase">CHI TIẾT MÔ PHỎNG</p>
+           <div className="h-40 overflow-y-auto text-[11px] leading-relaxed text-slate-600 custom-scrollbar pr-2 space-y-1.5">
              {steps.map((step, i) => (
-               <div key={i} className="hover:text-emerald-300 transition-colors border-l-2 border-emerald-500/30 pl-2">
+               <div key={i} className="hover:text-slate-900 transition-colors border-l-2 border-slate-300 pl-2">
                  {step}
                </div>
              ))}
