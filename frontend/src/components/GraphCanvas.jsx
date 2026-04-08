@@ -43,18 +43,18 @@ const GraphCanvas = () => {
   const styledEdges = useMemo(() => {
     return edges.map(e => {
       // DEFAULT STYLE - Enterprise Light Mode
-      let style = { stroke: '#94a3b8', strokeWidth: 2 };
+      let style = { stroke: '#94a3b8', strokeWidth: 1.5 };
       let label = e.data?.weight !== undefined ? String(e.data.weight) : (e.label || "1");
       let animated = false;
-      let markerEnd = { type: MarkerType.ArrowClosed, color: '#94a3b8' };
+      let markerEnd = { type: MarkerType.ArrowClosed, color: '#94a3b8', width: 15, height: 15 };
       
       if (mode === 'shortestPath') {
         const sourceIdx = shortestPath.indexOf(e.source);
         const targetIdx = shortestPath.indexOf(e.target);
         if (sourceIdx !== -1 && targetIdx !== -1 && Math.abs(sourceIdx - targetIdx) === 1) {
           animated = true;
-          style = { stroke: '#2563eb', strokeWidth: 3 };
-          markerEnd = { type: MarkerType.ArrowClosed, color: '#2563eb' };
+          style = { stroke: '#2563eb', strokeWidth: 2.5 };
+          markerEnd = { type: MarkerType.ArrowClosed, color: '#2563eb', width: 20, height: 20 };
         }
       } else if (mode === 'maxFlow') {
         // Show capacity globally if we have it, else weight
@@ -69,15 +69,16 @@ const GraphCanvas = () => {
             animated = true;
             // Width by relative flow
             const ratio = dist.flow / dist.capacity;
-            const strokeWidth = Math.max(2, ratio * 6);
+            const strokeWidth = Math.max(1.5, ratio * 4.5);
             style = { stroke: '#059669', strokeWidth: strokeWidth };
-            markerEnd = { type: MarkerType.ArrowClosed, color: '#059669' };
+            markerEnd = { type: MarkerType.ArrowClosed, color: '#059669', width: 20, height: 20 };
           }
         }
       }
 
       return { 
         ...e, 
+        type: 'straight',
         label,
         animated, 
         style,
@@ -103,12 +104,14 @@ const GraphCanvas = () => {
         id: `e-${params.source}-${params.target}-${Date.now()}`,
         label: `${val}`,
         data: { weight: val, capacity: val },
-        type: 'default',
+        type: 'straight',
         markerEnd: {
           type: MarkerType.ArrowClosed,
           color: '#94a3b8',
+          width: 15,
+          height: 15
         },
-        style: { stroke: '#94a3b8', strokeWidth: 2 },
+        style: { stroke: '#94a3b8', strokeWidth: 1.5 },
         labelStyle: { fill: '#334155', fontWeight: 600, fontSize: 13 },
         labelBgStyle: { fill: '#ffffff', fillOpacity: 1, stroke: '#e2e8f0', strokeWidth: 1, rx: 4, ry: 4 },
         labelBgPadding: [8, 4],
@@ -129,6 +132,8 @@ const GraphCanvas = () => {
         onEdgesDelete={onEdgesDelete}
         onConnect={onConnect}
         connectionMode={ConnectionMode.Loose}
+        connectionLineType="straight"
+        connectionLineStyle={{ stroke: '#94a3b8', strokeWidth: 1.5 }}
         fitView
         colorMode="dark"
         className="react-flow-dark"
