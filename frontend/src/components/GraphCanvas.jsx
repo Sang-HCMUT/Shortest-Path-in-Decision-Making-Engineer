@@ -11,6 +11,7 @@ import '@xyflow/react/dist/style.css';
 import useGraphStore from '../store/useGraphStore';
 import CircleNode from './CircleNode';
 import FloatingEdge from './FloatingEdge';
+import MinCutLineOverlay from './MinCutLineOverlay';
 
 const nodeTypes = { circle: CircleNode };
 const edgeTypes = { floating: FloatingEdge };
@@ -155,6 +156,7 @@ const GraphCanvas = () => {
       >
         <Background color="#cbd5e1" variant="dots" gap={20} size={1.5} />
         <Controls className="bg-white border-slate-200 shadow-sm rounded-md" />
+        <MinCutLineOverlay />
       </ReactFlow>
       
       {nodes.length === 0 && (
