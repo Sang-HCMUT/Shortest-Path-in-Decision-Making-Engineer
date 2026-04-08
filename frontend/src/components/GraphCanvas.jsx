@@ -27,6 +27,7 @@ const GraphCanvas = () => {
   const mode = useGraphStore(state => state.mode);
   const shortestPath = useGraphStore(state => state.shortestPath);
   const maxFlowDistribution = useGraphStore(state => state.maxFlowDistribution);
+  const minCutEdges = useGraphStore(state => state.minCutEdges);
 
   // Compute styled nodes
   const styledNodes = useMemo(() => {
@@ -64,6 +65,8 @@ const GraphCanvas = () => {
         label = `${cap}`;
         
         if (maxFlowDistribution) {
+          const isMinCut = minCutEdges && (minCutEdges.includes(`${e.source}-${e.target}`) || minCutEdges.includes(`${e.target}-${e.source}`));
+          
           // Check if this edge has flow mapping
           const dist = maxFlowDistribution[`${e.source}-${e.target}`];
           if (dist && dist.flow > 0) {
@@ -72,8 +75,17 @@ const GraphCanvas = () => {
             // Width by relative flow
             const ratio = dist.flow / dist.capacity;
             const strokeWidth = Math.max(1.5, ratio * 4.5);
-            style = { stroke: '#059669', strokeWidth: strokeWidth };
-            markerEnd = { type: MarkerType.ArrowClosed, color: '#059669', width: 20, height: 20 };
+            
+            if (isMinCut) {
+              style = { stroke: '#ef4444', strokeWidth: strokeWidth + 1, strokeDasharray: '6,4' };
+              markerEnd = { type: MarkerType.ArrowClosed, color: '#ef4444', width: 20, height: 20 };
+            } else {
+              style = { stroke: '#059669', strokeWidth: strokeWidth };
+              markerEnd = { type: MarkerType.ArrowClosed, color: '#059669', width: 20, height: 20 };
+            }
+          } else if (isMinCut) {
+             style = { stroke: '#ef4444', strokeWidth: 2.5, strokeDasharray: '6,4' };
+             markerEnd = { type: MarkerType.ArrowClosed, color: '#ef4444', width: 20, height: 20 };
           }
         }
       }
@@ -87,7 +99,7 @@ const GraphCanvas = () => {
         markerEnd
       };
     });
-  }, [edges, shortestPath, maxFlowDistribution, mode]);
+  }, [edges, shortestPath, maxFlowDistribution, minCutEdges, mode]);
 
   const onConnect = useCallback((params) => {
     const promptText = mode === 'maxFlow' 

@@ -7,8 +7,9 @@ A professional, full-stack decision-making and graph analytics tool built for ac
 
 ## ✨ Features
 - **Interactive Graph Canvas**: Drag-and-drop nodes, define edge weights, and assign capacities intuitively using `React Flow`.
-- **Shortest Path (Dijkstra's Algorithm)**: Calculates the absolute shortest distance between a source and a sink node, visually outlining the exact optimal route.
-- **Max Flow (Edmonds-Karp Algorithm)**: Computes the maximum possible flow in a flow network, and visually distributes the flow allocations across the active bottleneck edges.
+- **Shortest Path (Dijkstra's Algorithm)**: Calculates the shortest distance. Intelligently parses multi-graph parallel edges by dynamically filtering for mathematically optimal routes.
+- **Max Flow (Edmonds-Karp Algorithm)**: Computes the maximum possible flow in a flow network, visually distributing flow allocations.
+- **Min Cut (Bottleneck) Analysis**: Augments Max Flow by computing residual graph isolations to identify & highlight the exact bottleneck edges forming the minimal cut.
 - **Professional UI/UX**: clean, light-weight minimal aesthetic theme tailored for academic analytics, research, and presentation.
 - **Undo & Flexible Editing**: Safely undo accidental edge/node deletions or additions, supporting full keyboard shortcuts (Backspace/Delete).
 - **Execution Log Simulation**: View real-time algorithm calculation steps, distances, and mathematical bottlenecks per iteration.

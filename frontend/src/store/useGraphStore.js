@@ -16,6 +16,7 @@ const useGraphStore = create((set, get) => ({
   
   maxFlowValue: null,
   maxFlowDistribution: null,
+  minCutEdges: [],
   
   isCalculating: false,
   
@@ -38,6 +39,7 @@ const useGraphStore = create((set, get) => ({
       shortestPath: [],
       maxFlowValue: null,
       maxFlowDistribution: null,
+      minCutEdges: [],
       shortestDistance: null,
       calculationSteps: []
     };
@@ -68,10 +70,11 @@ const useGraphStore = create((set, get) => ({
     isCalculating: false 
   }),
 
-  setMaxFlowResult: (flow, steps, distribution) => set({
+  setMaxFlowResult: (flow, steps, distribution, minCutEdges) => set({
     maxFlowValue: flow,
     calculationSteps: steps,
     maxFlowDistribution: distribution,
+    minCutEdges: minCutEdges || [],
     isCalculating: false
   }),
   
@@ -89,7 +92,8 @@ const useGraphStore = create((set, get) => ({
       shortestDistance: null, 
       calculationSteps: [],
       maxFlowValue: null,
-      maxFlowDistribution: null
+      maxFlowDistribution: null,
+      minCutEdges: []
     });
   },
   
@@ -99,6 +103,7 @@ const useGraphStore = create((set, get) => ({
     shortestDistance: null, 
     maxFlowValue: null,
     maxFlowDistribution: null,
+    minCutEdges: [],
     isCalculating: false
   })
 }));

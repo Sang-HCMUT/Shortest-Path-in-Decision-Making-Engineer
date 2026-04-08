@@ -89,8 +89,8 @@ const ControlPanel = () => {
       
       if (resData.status === 'success') {
         if (mode === 'maxFlow') {
-          const { max_flow, flow_distribution, calculation_steps } = resData.data;
-          setMaxFlowResult(max_flow, calculation_steps, flow_distribution);
+          const { max_flow, flow_distribution, calculation_steps, min_cut_edges } = resData.data;
+          setMaxFlowResult(max_flow, calculation_steps, flow_distribution, min_cut_edges);
         } else {
           const { shortest_distance, path, calculation_steps } = resData.data;
           setResult(path, shortest_distance, calculation_steps);
