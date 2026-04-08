@@ -23,11 +23,30 @@ const CircleNode = ({ data, selected }) => {
         'border-slate-300 text-slate-700 font-semibold hover:border-slate-400 shadow-sm'
       }`}
     >
-      {/* 4 Handles ẩn bám quanh viền node. Người dùng chỉ kéo từ viền là đi */}
-      <Handle type="source" position={Position.Top} id="top" style={{...handleStyle, top: -10}} />
-      <Handle type="source" position={Position.Bottom} id="bottom" style={{...handleStyle, bottom: -10}} />
-      <Handle type="source" position={Position.Left} id="left" style={{...handleStyle, left: -10}} />
-      <Handle type="source" position={Position.Right} id="right" style={{...handleStyle, right: -10}} />
+      {/* 12 Handles bao quanh viền để tạo cảm giác kéo thả không giới hạn (Floating edges) */}
+      {[...Array(12)].map((_, i) => {
+        const angle = (i * 30 * Math.PI) / 180;
+        // Bán kính hình tròn là 30. Ta đặt handle cách tâm 32px để dễ kéo từ viền
+        const radius = 32;
+        const x = 30 + radius * Math.cos(angle);
+        const y = 30 + radius * Math.sin(angle);
+        return (
+          <Handle
+            key={i}
+            type="source"
+            position={Position.Right}
+            id={`h${i}`}
+            style={{
+              ...handleStyle,
+              position: 'absolute',
+              left: x - 10,
+              top: y - 10,
+              width: 20,
+              height: 20
+            }}
+          />
+        );
+      })}
       
       <div className="text-base pointer-events-none">{data.label}</div>
     </div>
