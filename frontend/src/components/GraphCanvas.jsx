@@ -10,8 +10,10 @@ import {
 import '@xyflow/react/dist/style.css';
 import useGraphStore from '../store/useGraphStore';
 import CircleNode from './CircleNode';
+import FloatingEdge from './FloatingEdge';
 
 const nodeTypes = { circle: CircleNode };
+const edgeTypes = { floating: FloatingEdge };
 
 const GraphCanvas = () => {
   const nodes = useGraphStore(state => state.nodes);
@@ -78,7 +80,7 @@ const GraphCanvas = () => {
 
       return { 
         ...e, 
-        type: 'straight',
+        type: 'floating',
         label,
         animated, 
         style,
@@ -104,7 +106,7 @@ const GraphCanvas = () => {
         id: `e-${params.source}-${params.target}-${Date.now()}`,
         label: `${val}`,
         data: { weight: val, capacity: val },
-        type: 'straight',
+        type: 'floating',
         markerEnd: {
           type: MarkerType.ArrowClosed,
           color: '#94a3b8',
@@ -126,6 +128,7 @@ const GraphCanvas = () => {
         nodes={styledNodes}
         edges={styledEdges}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onNodesDelete={onNodesDelete}

@@ -26,8 +26,8 @@ const CircleNode = ({ data, selected }) => {
       {/* 12 Handles bao quanh viền để tạo cảm giác kéo thả không giới hạn (Floating edges) */}
       {[...Array(12)].map((_, i) => {
         const angle = (i * 30 * Math.PI) / 180;
-        // Bán kính hình tròn là 30. Ta đặt handle cách tâm 32px để dễ kéo từ viền
-        const radius = 32;
+        // Đặt tâm handle chính xác trên viền (Bán kính hình tròn là 30)
+        const radius = 30;
         const x = 30 + radius * Math.cos(angle);
         const y = 30 + radius * Math.sin(angle);
         return (
