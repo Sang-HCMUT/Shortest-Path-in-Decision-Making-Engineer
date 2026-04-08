@@ -60,6 +60,7 @@ def calculate_flow(request: GraphRequest):
         data = MaxFlowResponseData(
             max_flow=result["max_flow"],
             flow_distribution=result["flow_distribution"],
+            min_cut_edges=result["min_cut_edges"],
             calculation_steps=result["calculation_steps"]
         )
         return MaxFlowResponse(status="success", data=data)

@@ -8,9 +8,11 @@ def calculate_shortest_path(nodes, edges, start_node, target_node, directed=Fals
         u, v, w = edge.source, edge.target, edge.weight
         if w < 0:
             return None, "Trọng số âm không được hỗ trợ bởi Dijkstra."
-        adj_list[u][v] = w
+        if v not in adj_list[u] or w < adj_list[u][v]:
+            adj_list[u][v] = w
         if not directed:
-            adj_list[v][u] = w
+            if u not in adj_list[v] or w < adj_list[v][u]:
+                adj_list[v][u] = w
             
     if start_node not in adj_list or target_node not in adj_list:
          return None, "Node bắt đầu hoặc kết thúc không tồn tại."

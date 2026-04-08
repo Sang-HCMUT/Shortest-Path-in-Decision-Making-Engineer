@@ -27,6 +27,7 @@ class GraphResponse(BaseModel):
 class MaxFlowResponseData(BaseModel):
     max_flow: float
     flow_distribution: dict
+    min_cut_edges: List[str] = []
     calculation_steps: List[str]
 
 class MaxFlowResponse(BaseModel):

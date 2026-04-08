@@ -14,6 +14,9 @@ def calculate_max_flow(nodes, edges, source, sink, directed=False):
             
     if source not in nodes or sink not in nodes:
         return None, "Nguồn hoặc đích không tồn tại trong tập hợp các nút."
+        
+    if source == sink:
+        return None, "Nút nguồn và đích không được trùng nhau."
 
     # Mảng lưu luồng hiện tại
     flow = defaultdict(lambda: defaultdict(float))
@@ -79,9 +82,29 @@ def calculate_max_flow(nodes, edges, source, sink, directed=False):
                     "capacity": capacity[u][v]
                 }
                 
+    # Tính toán MIN CUT
+    reachable_S = set()
+    queue_S = deque([source])
+    reachable_S.add(source)
+    while queue_S:
+        u = queue_S.popleft()
+        for v in capacity[u]:
+            if capacity[u][v] - flow[u][v] > 0 and v not in reachable_S:
+                reachable_S.add(v)
+                queue_S.append(v)
+                
+    min_cut_edges = []
+    for edge in edges:
+        # Nếu cung ban đầu đi từ S sang T (không nằm trong S)
+        if edge.source in reachable_S and edge.target not in reachable_S:
+            min_cut_edges.append(f"{edge.source}-{edge.target}")
+        elif not directed and edge.target in reachable_S and edge.source not in reachable_S:
+            min_cut_edges.append(f"{edge.target}-{edge.source}")
+                
     result_data = {
         "max_flow": max_flow,
         "flow_distribution": flow_distribution,
+        "min_cut_edges": min_cut_edges,
         "calculation_steps": steps
     }
     
