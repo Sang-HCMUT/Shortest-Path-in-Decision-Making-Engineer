@@ -9,7 +9,9 @@ def calculate_max_flow(nodes, edges, source, sink, directed=False):
              return None, "Sức chứa (capacity) không được âm."
         
         capacity[u][v] += cap
-        if not directed:
+        if directed:
+            capacity[v][u] += 0 # Mầm mống key để duyệt Residual capacity
+        else:
             capacity[v][u] += cap # Cho phép luồng hai chiều nếu undirected
             
     if source not in nodes or sink not in nodes:
