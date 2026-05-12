@@ -9,11 +9,17 @@ Dự án tập trung giải quyết và trực quan hóa hai bài toán đồ th
 
 ## 2. Đường đi ngắn nhất (Shortest Path)
 
-### 2.1. Mô tả
-Cho đồ thị có hướng $G = (V, E)$. Cạnh $(u, v)$ có trọng số $w(u, v) \ge 0$ (chi phí/khoảng cách). 
-Mục tiêu: Tìm đường đi từ đỉnh Source đến Target với tổng chi phí nhỏ nhất.
+### 2.1. Mô tả bài toán và Cơ sở lý thuyết
+- **Mô hình toán học:** Cho đồ thị có hướng $G = (V, E)$. Mỗi cạnh $(u, v)$ có trọng số $w(u, v) \ge 0$ biểu diễn khoảng cách, thời gian hoặc chi phí di chuyển. Nếu hai đỉnh không kết nối trực tiếp, khoảng cách được xem là $\infty$.
+- **Mục tiêu:** Định tuyến một lộ trình từ đỉnh xuất phát (Source) đến đỉnh đích (Target) sao cho tổng chi phí tích lũy là nhỏ nhất. Bài toán ưu tiên giải quyết việc tiết kiệm chi phí/khoảng cách cho một chuyến đi đơn lẻ trên mạng lưới.
 
-### 2.2. Triển khai Dijkstra (Backend)
+### 2.2. Hướng giải quyết (Phương pháp gán nhãn)
+Để giải quyết bài toán, hệ thống áp dụng **Thuật toán Dijkstra** dựa trên kỹ thuật gán nhãn (Labeling Procedure) nhằm loại bỏ dần các con đường tốn kém:
+1. **Nhãn tạm thời (Temporary label):** Ước lượng chi phí đi từ nguồn đến đỉnh hiện tại (có thể được cập nhật giảm xuống nếu tìm thấy đường đi rẻ hơn).
+2. **Nhãn vĩnh viễn (Permanent label):** Chi phí tối ưu chính xác đã được xác nhận, không thể cải thiện thêm.
+Thuật toán liên tục tìm đỉnh có nhãn tạm thời nhỏ nhất, chốt nó thành nhãn vĩnh viễn, rồi từ đó nhìn ra xung quanh để cập nhật (giảm) nhãn tạm thời cho các đỉnh kề.
+
+### 2.3. Triển khai Dijkstra (Backend)
 Thuật toán Dijkstra được cài đặt qua các bước:
 - **Lọc đa cung (Multi-graph Filtering):** Nếu có nhiều cạnh song song giữa 2 đỉnh, giữ lại cạnh có trọng số nhỏ nhất.
 - **Khởi tạo:** Dùng Hash Map `distances` lưu khoảng cách (mặc định $\infty$, đỉnh nguồn là 0). Mảng `previous_nodes` lưu vết đường đi.
