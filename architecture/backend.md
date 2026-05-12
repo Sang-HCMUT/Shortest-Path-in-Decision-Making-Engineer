@@ -1,23 +1,27 @@
-# Module Backend: REST API Server
+# Backend
 
 ## Tổng quan
-Bao gồm RESTful API để kết nối Frontend với lõi Thuật toán.
-- **Tech Stack:** Python (FastAPI).
-- **Features:** Xử lý request JSON, gọi thuật toán Dijkstra, và trả về Response.
+RESTful API xử lý thuật toán đồ thị.
+- **Tech Stack:** Python, FastAPI.
+- **Features:** Xử lý JSON request, thực thi thuật toán (Dijkstra, Edmonds-Karp), trả về JSON response.
 
-## Cấu trúc Thư mục (Dự kiến)
+## Cấu trúc Thư mục
 ```
 backend/
-├── main.py              # Entry point của FastAPI ứng dụng
-├── models/              # Pydantic models (Schemas cho Request/Response JSON)
+├── main.py              # FastAPI entry point
+├── models/              # Pydantic models (Data Validation schemas)
 │   └── graph.py
-├── services/            # Chứa logic nghiệp vụ và thuật toán
-│   └── dijkstra.py      # Lõi thuật toán
-├── requirements.txt     # Danh sách thư viện Python
+├── services/            # Core algorithms
+│   ├── dijkstra.py      # Thuật toán Shortest Path
+│   └── max_flow.py      # Thuật toán Edmonds-Karp & Min-Cut
+├── requirements.txt     # Python dependencies
 ```
 
 ## API Endpoints
 - `POST /api/v1/shortest-path/calculate`
-  - Nhận HTTP Body chứa danh sách `nodes`, `edges`, `source`, `target`.
-  - Gọi hàm trong `services/dijkstra.py`.
-  - Formatting output và gửi JSON response cho client.
+  - Input JSON: `nodes`, `edges`, `source`, `target`.
+  - Output: `shortest_distance`, `path`, `calculation_steps`.
+
+- `POST /api/v1/max-flow/calculate`
+  - Input JSON: `nodes`, `edges` (với capacity), `source`, `target`.
+  - Output: `max_flow`, `bottleneck_edges`, `calculation_steps`.

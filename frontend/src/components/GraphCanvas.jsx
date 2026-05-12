@@ -47,10 +47,10 @@ const GraphCanvas = () => {
   const styledEdges = useMemo(() => {
     return edges.map(e => {
       // DEFAULT STYLE - Enterprise Light Mode
-      let style = { stroke: '#94a3b8', strokeWidth: 1.5 };
+      let style = { stroke: '#4b5563', strokeWidth: 2 };
       let label = e.data?.weight !== undefined ? String(e.data.weight) : (e.label || "1");
       let animated = false;
-      let markerEnd = { type: MarkerType.ArrowClosed, color: '#94a3b8', width: 15, height: 15 };
+      let markerEnd = { type: MarkerType.ArrowClosed, color: '#4b5563', width: 15, height: 15 };
       
       if (mode === 'shortestPath') {
         const sourceIdx = shortestPath.indexOf(e.source);
@@ -122,11 +122,11 @@ const GraphCanvas = () => {
         type: 'floating',
         markerEnd: {
           type: MarkerType.ArrowClosed,
-          color: '#94a3b8',
+          color: '#4b5563',
           width: 15,
           height: 15
         },
-        style: { stroke: '#94a3b8', strokeWidth: 1.5 },
+        style: { stroke: '#4b5563', strokeWidth: 2 },
         labelStyle: { fill: '#334155', fontWeight: 600, fontSize: 13 },
         labelBgStyle: { fill: '#ffffff', fillOpacity: 1, stroke: '#e2e8f0', strokeWidth: 1, rx: 4, ry: 4 },
         labelBgPadding: [8, 4],
@@ -136,7 +136,7 @@ const GraphCanvas = () => {
   }, [addEdgeToStore, mode]);
 
   return (
-    <div className="h-full w-full bg-[#0a0f1d] absolute inset-0">
+    <div className="h-full w-full bg-gray-100 absolute inset-0">
       <ReactFlow
         nodes={styledNodes}
         edges={styledEdges}
@@ -149,20 +149,20 @@ const GraphCanvas = () => {
         onConnect={onConnect}
         connectionMode={ConnectionMode.Loose}
         connectionLineType="straight"
-        connectionLineStyle={{ stroke: '#94a3b8', strokeWidth: 1.5 }}
+        connectionLineStyle={{ stroke: '#4b5563', strokeWidth: 2 }}
         fitView
-        colorMode="dark"
-        className="react-flow-dark"
+        colorMode="light"
+        className="react-flow-light"
       >
-        <Background color="#cbd5e1" variant="dots" gap={20} size={1.5} />
-        <Controls className="bg-white border-slate-200 shadow-sm rounded-md" />
+        <Background color="#ccc" variant="dots" gap={20} size={1.5} />
+        <Controls className="bg-white border-gray-300 shadow-sm rounded" />
         <MinCutLineOverlay />
       </ReactFlow>
       
       {nodes.length === 0 && (
-         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none text-slate-500 text-center bg-slate-900/80 p-6 rounded-2xl border border-slate-800 backdrop-blur-md">
-            <h3 className="text-xl font-medium mb-2 text-slate-300">Chưa có dữ liệu đồ thị</h3>
-            <p className="text-sm text-slate-400">Sử dụng Bảng điều khiển để tạo Node, sau đó kéo thả giữa các Node để tạo Cung.</p>
+         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none text-gray-600 text-center bg-white p-5 rounded border border-gray-300 shadow-sm">
+            <h3 className="text-lg font-bold mb-1 text-gray-800">Chưa có dữ liệu đồ thị</h3>
+            <p className="text-[13px] text-gray-500">Sử dụng Bảng điều khiển để tạo Node, sau đó kéo thả giữa các Node để tạo Cung.</p>
          </div>
       )}
     </div>

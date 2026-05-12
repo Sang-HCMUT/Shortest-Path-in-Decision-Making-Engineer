@@ -1,54 +1,37 @@
-# Network Graph Solver: Shortest Path & Max Flow
+# Shortest Path & Max Flow Solver
 
-A professional, full-stack decision-making and graph analytics tool built for academic and enterprise network routing problems. This application provides an interactive canvas to construct directed graphs, and computes complex network algorithms instantly.
+Interactive web application for analyzing network graphs. Built to compute Shortest Path and Max Flow algorithms in real-time.
 
-## 🌟 Live Demo
-**👉 [Try the Interactive Web App Here!](https://Sang-HCMUT.github.io/Shortest-Path-in-Decision-Making-Engineer/)**
+## Live Demo
+[Try the app](https://Sang-HCMUT.github.io/Shortest-Path-in-Decision-Making-Engineer/)
 
-## ✨ Features
-- **Interactive Graph Canvas**: Drag-and-drop nodes, define edge weights, and assign capacities intuitively using `React Flow`.
-- **Shortest Path (Dijkstra's Algorithm)**: Calculates the shortest distance. Intelligently parses multi-graph parallel edges by dynamically filtering for mathematically optimal routes.
-- **Max Flow (Edmonds-Karp Algorithm)**: Computes the maximum possible flow in a flow network, visually distributing flow allocations.
-- **Min Cut (Bottleneck) Analysis**: Augments Max Flow by computing residual graph isolations to identify & highlight the exact bottleneck edges forming the minimal cut.
-- **Professional UI/UX**: clean, light-weight minimal aesthetic theme tailored for academic analytics, research, and presentation.
-- **Undo & Flexible Editing**: Safely undo accidental edge/node deletions or additions, supporting full keyboard shortcuts (Backspace/Delete).
-- **Execution Log Simulation**: View real-time algorithm calculation steps, distances, and mathematical bottlenecks per iteration.
+## Features
+- Interactive canvas powered by `React Flow`. Add nodes, draw edges, set capacities and weights.
+- **Shortest Path**: Uses Dijkstra's algorithm. Handles multi-graph parallel edges automatically.
+- **Max Flow & Min Cut**: Implements Edmonds-Karp to compute maximum flow. Highlights bottleneck edges directly on the graph.
+- Keyboard support for deletions, plus undo/redo capabilities.
+- Step-by-step execution logs for algorithm tracing.
 
-## 🏗️ Technical Architecture
-The project strictly follows a decoupled Client-Server architecture.
+## Tech Stack
+- **Frontend**: React, Vite, React Flow, Zustand, TailwindCSS. (Hosted on GitHub Pages)
+- **Backend**: Python, FastAPI, Uvicorn. (Deployed on Render)
 
-- **Frontend (`/frontend`)**: Built with React.js, Vite, Zustand (for state management), and Tailwind CSS (for styling). Hosted dynamically on GitHub Pages.
-- **Backend (`/backend`)**: A robust Python API powered by **FastAPI** and **Uvicorn**, containing the algorithmic data structures. Deployed 24/7 on Render.
+## Running Locally
 
-## 🚀 Running Locally
+Requires Node.js (18+) and Python (3.10+).
 
-### Prerequisites
-- Node.js (v18+)
-- Python (3.10+)
-
-### 1. Start the Backend (API)
-Open a terminal, navigate to the `backend` directory, install the required packages, and start the local FastAPI server:
+### 1. Backend
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
-*The API will be available at `http://localhost:8000`.*
 
-### 2. Start the Frontend (UI)
-In a new separate terminal, navigate to the `frontend` directory:
+### 2. Frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-*The React app will be rapidly served by Vite.*
 
-> **Note**: For local development, ensure that the API fetch variables in `frontend/src/components/ControlPanel.jsx` temporarily point to `http://localhost:8000` rather than the live Render production URL.
-
-## 🛠️ Built With
-- **[React](https://react.dev/)** & **[Vite](https://vitejs.dev/)**
-- **[React Flow](https://reactflow.dev/)** (Node-based UI framework)
-- **[Tailwind CSS](https://tailwindcss.com/)**
-- **[Zustand](https://github.com/pmndrs/zustand)** (React State Management)
-- **[FastAPI](https://fastapi.tiangolo.com/)** (High-performance Python backend framework)
+*Note: Update API endpoints in `frontend/src/components/ControlPanel.jsx` to point to `localhost:8000` during local dev.*

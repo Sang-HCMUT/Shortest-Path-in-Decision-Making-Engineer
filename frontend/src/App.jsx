@@ -19,14 +19,14 @@ function App() {
   }, []);
 
   return (
-    <div className="flex h-screen w-full bg-slate-50 font-sans text-slate-800 overflow-hidden">
+    <div className="flex h-screen w-full bg-gray-100 font-sans text-gray-800 overflow-hidden">
       <div className="flex-1 relative h-full">
         <ReactFlowProvider>
           <GraphCanvas />
         </ReactFlowProvider>
       </div>
       {/* Thanh công cụ chuyên nghiệp */}
-      <div className="w-[420px] h-full flex-none bg-white border-l border-slate-200 z-50 shadow-sm relative flex flex-col">
+      <div className="w-[380px] h-full flex-none bg-white border-l border-gray-300 z-50 relative flex flex-col shadow-sm">
         <ControlPanel />
       </div>
     </div>
